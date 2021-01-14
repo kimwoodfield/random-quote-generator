@@ -1,27 +1,20 @@
 const generate = document.querySelector("#generate");
 const h3 = document.querySelector("h3");
 const h4 = document.querySelector("h4");
+let quotes;
 
-const quotes = [
-    {
-        quote: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
-        person: "Nelson Mandella"
-    },
-    {
-        quote: "The way to get started is to quit talking and begin doing.",
-        person: "Walt Disney"
-    },
-    {
-        quote: "Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.",
-        person: "Steve Jobs"
-    }
-];
+// API call
+fetch("https://type.fit/api/quotes").then(function(response) {
+    return response.json();
+}) . then(function(data) {
+    quotes = data;
+});
 
 
 generate.addEventListener("click", function() {
     let num = Math.floor(Math.random() * quotes.length);
-    let quote = `${quotes[num].quote} `;
-    let author = `- ${quotes[num].person}`;
+    let quote = `${quotes[num].text} `;
+    let author = `- ${quotes[num].author}`;
     h3.innerText = quote;
     h4.innerText = author;
 });
