@@ -10,10 +10,9 @@ fetch("https://type.fit/api/quotes").then(function(response) {
     quotes = data;
 });
 
-
 generate.addEventListener("click", function() {
     let num = Math.floor(Math.random() * quotes.length);
-    let quote = `${quotes[num].text} `;
+    let quote = `"${quotes[num].text}" `;
     let author = `- ${quotes[num].author}`;
     h3.innerText = quote;
     h4.innerText = author;
